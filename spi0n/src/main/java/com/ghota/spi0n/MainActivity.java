@@ -2,8 +2,11 @@ package com.ghota.spi0n;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -44,12 +47,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
+    public static SharedPreferences mPreference;
     private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPreference = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Initialize ImageLoader avec la configuration.
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
@@ -174,19 +180,30 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                     PostData data = listData.get(arg2 - 1);
-                    Intent intent = new Intent(getActivity(), PostActivity.class);
-                    /*intent.putExtra("postGuid", data.postGuid);
-                    intent.putExtra("postSlug", data.postSlug);
-                    intent.putExtra("postUrl", data.postUrl);
-                    intent.putExtra("postTitle", data.postTitle);
-                    intent.putExtra("postContent", data.postContent);
-                    intent.putExtra("postExcerpt", data.postExcerpt);
-                    intent.putExtra("postDate", data.postDate);
-                    intent.putExtra("postCategory", data.postCategory);
-                    intent.putExtra("postComment", data.postComment);
-                    intent.putExtra("postThumbUrl", data.postThumbUrl);*/
-                    intent.putExtra("post", data);
-                    startActivity(intent);
+
+                    if(mPreference.getString("open_post_type", "1").equals("1"))
+                    {
+                        Intent intent = new Intent(getActivity(), PostActivity.class);
+                        /*intent.putExtra("postGuid", data.postGuid);
+                        intent.putExtra("postSlug", data.postSlug);
+                        intent.putExtra("postUrl", data.postUrl);
+                        intent.putExtra("postTitle", data.postTitle);
+                        intent.putExtra("postContent", data.postContent);
+                        intent.putExtra("postExcerpt", data.postExcerpt);
+                        intent.putExtra("postDate", data.postDate);
+                        intent.putExtra("postCategory", data.postCategory);
+                        intent.putExtra("postComment", data.postComment);
+                        intent.putExtra("postThumbUrl", data.postThumbUrl);*/
+                        intent.putExtra("post", data);
+                        startActivity(intent);
+                    }
+                    else if (mPreference.getString("open_post_type", "1").equals("0"))
+                    {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(AppConstants.URL_ARTICLE_HTML+data.postGuid));
+                        startActivity(intent);
+                    }
+
                 }
             });
 
@@ -206,7 +223,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             if (!isLoading) {
                 isRefreshLoading = true;
                 isLoading = true;
-                Toast.makeText(getActivity(), categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON, Toast.LENGTH_SHORT).show();
                 new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON);
             } else {
                 postListView.onRefreshComplete();
@@ -219,7 +236,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             if (!isLoading) {
                 isRefreshLoading = false;
                 isLoading = true;
-                Toast.makeText(getActivity(), categorie_url.toString() + "page/" + (pagnation +1) + "/" + AppConstants.RSS_SERVER_TO_JSON, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), categorie_url.toString() + "page/" + (pagnation +1) + "/" + AppConstants.RSS_SERVER_TO_JSON, Toast.LENGTH_SHORT).show();
                 new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON);
             } else {
                 postListView.onLoadingMoreComplete();
@@ -276,6 +293,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                     }
                 } else {
                     Log.e("ServiceHandler", "Couldn't get any data from the url");
+                    Toast.makeText(getActivity(), "Impossible d'obtenir des données à partir du site.", Toast.LENGTH_SHORT).show();
                 }
 
                 return listArray;

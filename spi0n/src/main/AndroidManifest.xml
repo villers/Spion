@@ -27,8 +27,7 @@
         </activity>
         <activity
             android:name="com.ghota.spi0n.PostActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:label="@string/title_activity_post">
+            android:configChanges="keyboard|keyboardHidden|orientation">
         </activity>
     </application>
 

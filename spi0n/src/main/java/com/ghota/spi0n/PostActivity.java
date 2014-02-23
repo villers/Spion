@@ -31,6 +31,9 @@ public class PostActivity extends ActionBarActivity {
         // recupere le Bundle
         post = getIntent().getExtras().getParcelable("post");
 
+        setTitle(post.postTitle);
+
+
         // Initialize l'UI
         initUI();
     }

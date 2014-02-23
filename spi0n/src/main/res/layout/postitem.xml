@@ -8,6 +8,8 @@
     android:paddingRight="16dp"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/single_news_bg"
     >
 
     <FrameLayout
@@ -15,13 +17,13 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:scaleType="centerCrop"
-        android:layout_marginRight="5dp">
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="3dp">
 
         <ImageView
             android:id="@+id/postThumb"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
         <ProgressBar
