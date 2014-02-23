@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- postitem.xml -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    >
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:id="@+id/postThumb"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:layout_gravity="bottom"
+            style="@style/ProgressBarStyle" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/postTitleLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/framelayout"
+        android:layout_toRightOf="@id/framelayout"
+        android:maxLines="2"
+        android:text="This is a good Post, I hope it will have 2 lines. Please give me 2 lines"
+        android:textIsSelectable="false"
+        android:textSize="16sp"
+        android:ellipsize="end"/>
+ 
+    <TextView
+        android:id="@+id/postCategoryLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/framelayout"
+        android:layout_toRightOf="@id/framelayout"
+        android:maxLines="1"
+        android:text="Animaux"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="33"
+        android:id="@+id/postCommentLabel"
+        android:layout_alignBottom="@+id/framelayout"
+        android:layout_alignRight="@+id/postCategoryLabel"
+        android:layout_alignEnd="@+id/postCategoryLabel"
+        android:textSize="12sp"
+        />
+
+</RelativeLayout>

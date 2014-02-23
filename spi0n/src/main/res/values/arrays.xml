@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entries_list_preference">
+        <item>Lire l\'article dans l\'application</item>
+        <item>Lire seulement la vidéo</item>
+        <item>Lire l\'article dans le navigateur</item>
+    </string-array>
+
+    <string-array name="entryvalues_list_preference">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="arr_left_nav_list">
+        <item >Accueil</item>
+        <item >Actualité</item>
+        <item >Animaux</item>
+        <item >Art</item>
+        <item >Danse</item>
+        <item >Expérience</item>
+        <item >Fake</item>
+        <item >Guerre</item>
+        <item >Fake</item>
+        <item >Humour</item>
+        <item >Image</item>
+        <item >Internet</item>
+        <item >Jeux Vidéo</item>
+        <item >Musique</item>
+        <item >Non classé</item>
+        <item >NSFW</item>
+        <item >Owned</item>
+        <item >Pub</item>
+        <item >Santé</item>
+        <item >Sport</item>
+        <item >Technologie</item>
+        <item >Transport</item>
+        <item >Trash</item>
+        <item >TV &#038; Cinéma</item>
+        <item >WTF?!</item>
+        <item >Zapping</item>
+    </string-array>
+
+    <string-array name="tag_categorie">
+        <item ></item>
+        <item ></item>
+        <item >actualite/</item>
+        <item >animaux/</item>
+        <item >art-technique/</item>
+        <item >danse/</item>
+        <item >experiences/</item>
+        <item >fake-trucage/</item>
+        <item >guerre-m ilitaire/</item>
+        <item >Fake/</item>
+        <item >humour-comedi/e</item>
+        <item >photos-images-insolites/</item>
+        <item >siteweb-interne/t</item>
+        <item >jeuxvideo-consoles/</item>
+        <item >musique/</item>
+        <item >non-classe/</item>
+        <item >notsafeforwork/</item>
+        <item >owned/</item>
+        <item >publicite-marque/</item>
+        <item >sante-corps/</item>
+        <item >sport/</item>
+        <item >technologie-innovation/</item>
+        <item >auto-transport/</item>
+        <item >trash-gore/</item>
+        <item >tv-cinema/</item>
+        <item >wtf/</item>
+        <item >zapping-web/</item>
+    </string-array>
+</resources>

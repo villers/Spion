@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spi0n.com</string>
+    <string name="accueil">Accueil</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="pull_to_refresh">Pull down to refresh...</string>
+    <string name="loading">Loading...</string>
+    <string name="footer_loading">Click to load more...</string>
+    <string name="head_arrowImage">head_arrowImage</string>
+    <string name="title_activity_post">PostActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
