@@ -15,5 +15,7 @@
     <string name="head_arrowImage">head_arrowImage</string>
     <string name="title_activity_post">PostActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="no_connectivity">Impossible d\'obtenir des données à partir du site.</string>
+    <string name="action_search">Search</string>
 
 </resources>

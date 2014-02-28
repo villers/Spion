@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,6 +27,7 @@ public class PostActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // recupere le Bundle
@@ -102,6 +104,7 @@ public class PostActivity extends ActionBarActivity {
                         mCustomViewCallback.onCustomViewHidden();
                         // Show the content view.
                         mContentView.setVisibility(View.VISIBLE);
+
                         setContentView(mContentView);
                     }
                 }

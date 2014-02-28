@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 import com.ghota.dragtorefresh.RefreshableInterface;
 import com.ghota.dragtorefresh.RefreshableListView;
 import com.ghota.spi0n.Adapter.PostItemAdapter;
+import com.ghota.spi0n.Utils.Network;
 import com.ghota.spi0n.Utils.ServiceHandler;
 import com.ghota.spi0n.model.PostData;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -101,30 +104,28 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         actionBar.setTitle(mTitle);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        getMenuInflater().inflate(R.menu.main, menu);
+        restoreActionBar();
+
+        MenuItem searchItem = menu.findItem(R.id.itemSearch);
+        SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(s)).commit();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+        return true;
     }
 
     /**
@@ -133,6 +134,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public static class PlaceholderFragment extends Fragment implements RefreshableInterface {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private static final String ARG_SECTION_SEARCH = "section_seach";
         private ArrayList<String> guidList;
         private ArrayList<PostData> listData;
         private RefreshableListView postListView;
@@ -153,6 +155,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber-1);
+            args.putString(ARG_SECTION_SEARCH, "");
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public static PlaceholderFragment newInstance(String search) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, 0);
+            args.putString(ARG_SECTION_SEARCH, search);
             fragment.setArguments(args);
             return fragment;
         }
@@ -218,12 +230,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         @Override
         public void startFresh() {
-            // TODO Auto-generated method stub
             if (!isLoading) {
                 isRefreshLoading = true;
                 isLoading = true;
-                // Toast.makeText(getActivity(), categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON, Toast.LENGTH_SHORT).show();
-                new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON);
+                if (Network.isNetworkAvailable(getActivity())) {
+                    new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH) );
+                }else{
+                    Toast.makeText(getActivity(), getString(R.string.no_connectivity), Toast.LENGTH_SHORT).show();
+                    isLoading = false;
+                    postListView.onRefreshComplete();
+                }
             } else {
                 postListView.onRefreshComplete();
             }
@@ -231,12 +247,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         @Override
         public void startLoadMore() {
-            // TODO Auto-generated method stub
             if (!isLoading) {
                 isRefreshLoading = false;
                 isLoading = true;
-                // Toast.makeText(getActivity(), categorie_url.toString() + "page/" + (pagnation +1) + "/" + AppConstants.RSS_SERVER_TO_JSON, Toast.LENGTH_SHORT).show();
-                new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON);
+                if (Network.isNetworkAvailable(getActivity())) {
+                    new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH));
+                }else{
+                    Toast.makeText(getActivity(), getString(R.string.no_connectivity), Toast.LENGTH_SHORT).show();
+                    isLoading = false;
+                    postListView.onLoadingMoreComplete();
+                }
             } else {
                 postListView.onLoadingMoreComplete();
             }
@@ -282,7 +302,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                             objItem.postContent = c.getString("content");
                             objItem.postExcerpt = c.getString("excerpt");
                             objItem.postDate = c.getString("date");
-                            objItem.postCategory = c.getJSONArray("categories").getJSONObject(0).getString("title");
+                            objItem.postCategory = Html.fromHtml(c.getJSONArray("categories").getJSONObject(0).getString("title")).toString();
                             objItem.postComment = c.getString("comment_count");
                             objItem.postThumbUrl = c.getString("thumbnail");
 
@@ -293,7 +313,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                     }
                 } else {
                     Log.e("ServiceHandler", "Couldn't get any data from the url");
-                    Toast.makeText(getActivity(), "Impossible d'obtenir des données à partir du site.", Toast.LENGTH_SHORT).show();
                 }
 
                 return listArray;

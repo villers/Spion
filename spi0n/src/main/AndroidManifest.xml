@@ -5,15 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.ghota.spi0n.MainActivity"
+            android:screenOrientation="landscape"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +24,12 @@
         </activity>
         <activity
             android:name="com.ghota.spi0n.SettingsActivity"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
             android:name="com.ghota.spi0n.PostActivity"
+            android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation">
         </activity>
     </application>
