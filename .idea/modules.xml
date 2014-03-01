@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Spi0n.com.iml" filepath="$PROJECT_DIR$/Spi0n.com.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/mydragtorefresh/mydragtorefresh.iml" filepath="$PROJECT_DIR$/libs/mydragtorefresh/mydragtorefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/myhtml5webview/myhtml5webview.iml" filepath="$PROJECT_DIR$/libs/myhtml5webview/myhtml5webview.iml" />
       <module fileurl="file://$PROJECT_DIR$/spi0n/spi0n.iml" filepath="$PROJECT_DIR$/spi0n/spi0n.iml" />
     </modules>
   </component>

@@ -24,8 +24,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.ghota.dragtorefresh.RefreshableInterface;
-import com.ghota.dragtorefresh.RefreshableListView;
+import com.ghota.mydragtorefresh.RefreshableInterface;
+import com.ghota.mydragtorefresh.RefreshableListView;
 import com.ghota.spi0n.Adapter.PostItemAdapter;
 import com.ghota.spi0n.Utils.Network;
 import com.ghota.spi0n.Utils.ServiceHandler;
@@ -42,14 +42,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     public static SharedPreferences mPreference;
     private CharSequence mTitle;
 
@@ -60,7 +53,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         mPreference = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // Initialize ImageLoader avec la configuration.
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
@@ -72,14 +64,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
-
-        // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -139,18 +128,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         private ArrayList<PostData> listData;
         private RefreshableListView postListView;
         private PostItemAdapter postAdapter;
-        private int pagnation = 1; // start from 1
+        private int pagnation = 1;
         private boolean isRefreshLoading = true;
         private boolean isLoading = false;
         private StringBuilder categorie_url;
 
-        // contacts JSONArray
         JSONArray posts = null;
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -169,8 +153,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             return fragment;
         }
 
-        public PlaceholderFragment() {
-        }
+        public PlaceholderFragment() {}
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -193,32 +176,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                     PostData data = listData.get(arg2 - 1);
 
-                    if(mPreference.getString("open_post_type", "1").equals("1"))
-                    {
+                    if(mPreference.getString("open_post_type", "1").equals("1")){
                         Intent intent = new Intent(getActivity(), PostActivity.class);
-                        /*intent.putExtra("postGuid", data.postGuid);
-                        intent.putExtra("postSlug", data.postSlug);
-                        intent.putExtra("postUrl", data.postUrl);
-                        intent.putExtra("postTitle", data.postTitle);
-                        intent.putExtra("postContent", data.postContent);
-                        intent.putExtra("postExcerpt", data.postExcerpt);
-                        intent.putExtra("postDate", data.postDate);
-                        intent.putExtra("postCategory", data.postCategory);
-                        intent.putExtra("postComment", data.postComment);
-                        intent.putExtra("postThumbUrl", data.postThumbUrl);*/
                         intent.putExtra("post", data);
                         startActivity(intent);
                     }
-                    else if (mPreference.getString("open_post_type", "1").equals("0"))
-                    {
+                    else if (mPreference.getString("open_post_type", "1").equals("0")){
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(AppConstants.URL_ARTICLE_HTML+data.postGuid));
                         startActivity(intent);
                     }
-
                 }
             });
-
             return listView;
         }
 
@@ -233,16 +202,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             if (!isLoading) {
                 isRefreshLoading = true;
                 isLoading = true;
-                if (Network.isNetworkAvailable(getActivity())) {
+                if (Network.isNetworkAvailable(getActivity()))
                     new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH) );
-                }else{
+                else{
                     Toast.makeText(getActivity(), getString(R.string.no_connectivity), Toast.LENGTH_SHORT).show();
                     isLoading = false;
                     postListView.onRefreshComplete();
                 }
-            } else {
+            } else
                 postListView.onRefreshComplete();
-            }
         }
 
         @Override
@@ -250,22 +218,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             if (!isLoading) {
                 isRefreshLoading = false;
                 isLoading = true;
-                if (Network.isNetworkAvailable(getActivity())) {
+                if (Network.isNetworkAvailable(getActivity()))
                     new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH));
-                }else{
+                else{
                     Toast.makeText(getActivity(), getString(R.string.no_connectivity), Toast.LENGTH_SHORT).show();
                     isLoading = false;
                     postListView.onLoadingMoreComplete();
                 }
-            } else {
+            } else
                 postListView.onLoadingMoreComplete();
-            }
         }
 
 
-        /**
-         * Async task class to get json by making HTTP call
-         * */
         private class GetPostJson extends AsyncTask<String, Integer, ArrayList<PostData>> {
 
             private ArrayList<PostData> listArray;
@@ -274,10 +238,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             protected ArrayList<PostData> doInBackground(String... params) {
                 String jsonUrl = params[0];
 
-                // Creating service handler class instance
                 ServiceHandler sh = new ServiceHandler();
-
-                // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(jsonUrl, ServiceHandler.GET);
 
                 Log.d("Response: ", "> " + jsonStr);
@@ -285,12 +246,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 if (jsonStr != null) {
                     try {
                         listArray = new ArrayList<PostData>();
-                        JSONObject jsonObj = new JSONObject(jsonStr);
 
-                        // Getting JSON Array node
+                        JSONObject jsonObj = new JSONObject(jsonStr);
                         posts = jsonObj.getJSONArray("posts");
 
-                        // looping through All Contacts
                         for (int i = 0; i < posts.length(); i++) {
                             JSONObject c = posts.getJSONObject(i);
 
@@ -324,36 +283,31 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 boolean isupdated = false;
                 for (int i = 0; i < result.size(); i++) {
                     // check if the post is already in the list
-                    if (guidList.contains(result.get(i).postGuid)) {
+                    if (guidList.contains(result.get(i).postGuid))
                         continue;
-                    } else {
+                    else {
                         isupdated = true;
                         guidList.add(result.get(i).postGuid);
                     }
 
-                    if (isRefreshLoading) {
+                    if (isRefreshLoading)
                         listData.add(i, result.get(i));
-                    } else {
+                    else
                         listData.add(result.get(i));
-                    }
                 }
 
-                if (isupdated) {
+                if (isupdated)
                     postAdapter.notifyDataSetChanged();
-                }
 
                 isLoading = false;
 
-                if (isRefreshLoading) {
+                if (isRefreshLoading)
                     postListView.onRefreshComplete();
-                } else {
+                else
                     postListView.onLoadingMoreComplete();
-                }
 
                 super.onPostExecute(result);
             }
-
         }
-
     }
 }

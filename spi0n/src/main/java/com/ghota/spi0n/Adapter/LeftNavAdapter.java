@@ -41,6 +41,7 @@ public class LeftNavAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
             convertView = LayoutInflater.from(context).inflate(R.layout.left_nav_item, null);
+
         TextView lbl = (TextView) convertView;
         lbl.setText(getItem(position));
 
@@ -48,7 +49,7 @@ public class LeftNavAdapter extends BaseAdapter {
             lbl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_labels, 0, 0, 0);
         else
             lbl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_star, 0, 0, 0);
+
         return lbl;
     }
-
 }

@@ -71,6 +71,7 @@ public class PostData implements Parcelable {
     }
 
     public static final Parcelable.Creator<PostData> CREATOR = new Parcelable.Creator<PostData>() {
+
         @Override
         public PostData createFromParcel(Parcel source)
         {

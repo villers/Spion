@@ -11,17 +11,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class SettingsActivity extends PreferenceActivity {
 
-//    PreferenceCategory fakeHeader = new PreferenceCategory(this);
-//
-//    fakeHeader.setTitle(R.string.pref_header_general);
-//    getPreferenceScreen().addPreference(fakeHeader);
-//    addPreferencesFromResource(R.xml.pref_general);
-//
-//    fakeHeader.setTitle(R.string.pref_header_notifications);
-//    getPreferenceScreen().addPreference(fakeHeader);
-//    addPreferencesFromResource(R.xml.pref_notification);
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">myDragToRefresh</string>
+    <string name="release_to_refresh">Release to refresh…</string>
+    <string name="pull_to_refresh">Pull down to refresh…</string>
+    <string name="loading">Chargement…</string>
+    <string name="footer_loading">Clique pour charger plus…</string>
+    <string name="head_arrowImage">head_arrowImage</string>
+</resources>

@@ -15,8 +15,7 @@ public class TouchEffect implements OnTouchListener {
 			d.mutate();
 			d.setAlpha(150);
 			v.setBackgroundDrawable(d);
-		} else if (event.getAction() == MotionEvent.ACTION_UP
-				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+		} else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
 			Drawable d = v.getBackground();
 			d.setAlpha(255);
 			v.setBackgroundDrawable(d);

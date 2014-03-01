@@ -8,6 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/mydragtorefresh" />
+            <option value="$PROJECT_DIR$/libs/myhtml5webview" />
             <option value="$PROJECT_DIR$/spi0n" />
           </set>
         </option>

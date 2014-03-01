@@ -1,4 +1,4 @@
-package com.ghota.dragtorefresh;
+package com.ghota.mydragtorefresh;
 
 public interface RefreshableInterface {
 	public void startFresh();

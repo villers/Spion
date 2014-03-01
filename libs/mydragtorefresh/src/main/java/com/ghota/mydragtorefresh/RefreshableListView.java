@@ -1,4 +1,4 @@
- package com.ghota.dragtorefresh;
+ package com.ghota.mydragtorefresh;
 
  import android.content.Context;
  import android.util.AttributeSet;
@@ -15,8 +15,6 @@
  import android.widget.ProgressBar;
  import android.widget.RelativeLayout;
  import android.widget.TextView;
-
- import com.ghota.spi0n.R;
 
  import java.text.SimpleDateFormat;
  import java.util.Date;

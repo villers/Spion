@@ -3,6 +3,8 @@ package com.ghota.spi0n.Utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.ghota.spi0n.R;
+
 /**
  * Created by Ghota on 24/02/14.
  */
@@ -17,6 +19,6 @@ public class MailManager {
         mailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         mailIntent.setType("plain/text");
 
-        c.startActivity(Intent.createChooser(mailIntent, "Choose your mail client"));
+        c.startActivity(Intent.createChooser(mailIntent, c.getString(R.string.choose_mail_client)));
     }
 }
