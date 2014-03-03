@@ -23,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ghota.spi0n.Adapter.LeftNavAdapter;
-import com.ghota.spi0n.Utils.MailManager;
 import com.ghota.spi0n.Utils.TouchEffect;
 
 /**
@@ -139,7 +138,11 @@ public class NavigationDrawerFragment extends Fragment {
                         break;
 
                     case R.id.btnEmail:
-                        MailManager.openMailIntent(getActivity(), "Depuis l'application Spi0n.com android", AppConstants.EMAIL_SPION);
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{ AppConstants.EMAIL_SPION });
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Depuis l'application Spi0n.com android");
+                        mailIntent.setType("plain/text");
+                        startActivity(Intent.createChooser(mailIntent, getString(R.string.choose_mail_client)));
                         break;
 
                     case R.id.btnSetting:

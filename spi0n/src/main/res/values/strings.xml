@@ -9,6 +9,9 @@
     <string name="action_cache">Vider le cache</string>
     <string name="no_connectivity">Impossible d\'obtenir des données à partir du site.</string>
     <string name="action_search">Search</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_add_favoris">Ajouter au favoris</string>
+    <string name="action_share">Partager</string>
     <string name="choose_mail_client">Choisis ton client mail</string>
     <string name="categorie">Catégories</string>
 

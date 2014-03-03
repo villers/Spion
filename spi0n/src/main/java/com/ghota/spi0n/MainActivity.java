@@ -229,7 +229,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 postListView.onLoadingMoreComplete();
         }
 
-
         private class GetPostJson extends AsyncTask<String, Integer, ArrayList<PostData>> {
 
             private ArrayList<PostData> listArray;

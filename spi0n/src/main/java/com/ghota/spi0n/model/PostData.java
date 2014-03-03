@@ -50,6 +50,10 @@ public class PostData implements Parcelable {
         this.postThumbUrl = in.readString();
     }
 
+    public String toString(){
+        return this.postGuid + ", " + this.postSlug + ", " + this.postUrl + ", " + this.postTitle + ", " + this.postContent + ", " + this.postExcerpt + ", " + this.postDate + ", " + this.postCategory + ", " + this.postComment + ", " + this.postThumbUrl;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -67,20 +71,17 @@ public class PostData implements Parcelable {
         parcel.writeString(postCategory);
         parcel.writeString(postComment);
         parcel.writeString(postThumbUrl);
-
     }
 
     public static final Parcelable.Creator<PostData> CREATOR = new Parcelable.Creator<PostData>() {
 
         @Override
-        public PostData createFromParcel(Parcel source)
-        {
+        public PostData createFromParcel(Parcel source) {
             return new PostData(source);
         }
 
         @Override
-        public PostData[] newArray(int size)
-        {
+        public PostData[] newArray(int size) {
             return new PostData[size];
         }
     };
