@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.ghota.spi0n.model.PostData;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ghota on 02/03/2014.
@@ -13,7 +16,7 @@ import com.ghota.spi0n.model.PostData;
 public class PostsBDD {
 
     private static final int VERSION_BDD = 1;
-    private static final String NOM_BDD = "eleves.db";
+    private static final String NOM_BDD = "posts.db";
     private static final String TABLE_POSTS = "table_posts";
 
     private static final String COL_GUID = "GUID";
@@ -81,17 +84,54 @@ public class PostsBDD {
         return bdd.insert(TABLE_POSTS, null, values);
     }
 
+    public int countPost(){
+
+        String selectQuery = "SELECT "+COL_GUID+" FROM "+TABLE_POSTS;
+        Cursor c = bdd.rawQuery(selectQuery, null);
+        c.moveToFirst();
+        return c.getCount();
+    }
+
+    public void removeAllPosts(){
+        bdd.execSQL("DROP TABLE " + TABLE_POSTS + ";");
+        maBaseSQLite.onCreate(bdd);
+    }
+
     public int removePostWithID(int id){
         return bdd.delete(TABLE_POSTS, COL_GUID + " = " +id, null);
     }
 
-    public PostData getPostWithID(int id){
-        Cursor c = bdd.query(TABLE_POSTS, new String[] {COL_GUID, COL_SLUG, COL_URL, COL_TITLE, COL_CONTENT, COL_EXCERPT, COL_DATE, COL_CATEGORY, COL_COMMENT, COL_THUMBURL}, COL_GUID + "=" + id, null, null, null, null);
-        return cursorToPost(c);
+    public ArrayList<PostData> getAllPosts() {
+        ArrayList<PostData> postList = new ArrayList<PostData>();
+
+        String selectQuery = "SELECT "+COL_GUID+","+COL_SLUG+","+COL_URL+","+COL_TITLE+","+COL_CONTENT+","+COL_EXCERPT+","+COL_DATE+","+COL_CATEGORY+","+COL_COMMENT+","+COL_THUMBURL +" FROM " + TABLE_POSTS;
+        Log.d("SQL_QUERY", selectQuery);
+
+        Cursor c = bdd.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                PostData post = new PostData();
+                post.postGuid = String.valueOf(c.getInt(NUM_COL_GUID));
+                post.postSlug = c.getString(NUM_COL_SLUG);
+                post.postUrl = c.getString(NUM_COL_URL);
+                post.postTitle = c.getString(NUM_COL_TITLE);
+                post.postContent = c.getString(NUM_COL_CONTENT);
+                post.postExcerpt = c.getString(NUM_COL_EXCERPT);
+                post.postDate = c.getString(NUM_COL_DATE);
+                post.postCategory = c.getString(NUM_COL_CATEGORY);
+                post.postComment = c.getString(NUM_COL_COMMENT);
+                post.postThumbUrl = c.getString(NUM_COL_THUMBURL);
+                postList.add(post);
+            } while (c.moveToNext());
+        }
+        c.close();
+
+        return postList;
     }
 
-    //Cette méthode permet de convertir un cursor en un Post
-    private PostData cursorToPost(Cursor c){
+    public PostData getPostWithID(int id){
+        Cursor c = bdd.query(TABLE_POSTS, new String[] {COL_GUID, COL_SLUG, COL_URL, COL_TITLE, COL_CONTENT, COL_EXCERPT, COL_DATE, COL_CATEGORY, COL_COMMENT, COL_THUMBURL}, COL_GUID + "=" + id, null, null, null, null);
+
         if (c.getCount() == 0)
             return null;
 

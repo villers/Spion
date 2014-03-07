@@ -7,12 +7,24 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName '2.0'
     }
+
+    signingConfigs {
+        release {
+            storeFile file("/Users/Ghota/Desktop/programation/android/Spi0n.com/keystore")
+            storePassword "teissiere"
+            keyAlias "keystore android"
+            keyPassword "teissiere"
+        }
+    }
+
     buildTypes {
         release {
-            runProguard false
+            debuggable false
+            jniDebugBuild false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -22,6 +34,7 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:19.0.1'
     compile 'com.android.support:support-v4:19.0.1'
     compile 'com.android.support:appcompat-v7:19.0.1'
+    compile 'com.google.android.gms:play-services:+'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     compile project(':libs:mydragtorefresh')
     compile project(':libs:myhtml5webview')

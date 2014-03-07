@@ -30,6 +30,9 @@ import com.ghota.spi0n.Adapter.PostItemAdapter;
 import com.ghota.spi0n.Utils.Network;
 import com.ghota.spi0n.Utils.ServiceHandler;
 import com.ghota.spi0n.model.PostData;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -52,6 +55,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         setContentView(R.layout.activity_main);
 
         mPreference = PreferenceManager.getDefaultSharedPreferences(this);
+
+        final InterstitialAd interstitial = new InterstitialAd(this);
+        interstitial.setAdUnitId(AppConstants.MY_AD_UNIT_ID);
+        interstitial.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                interstitial.show();
+            }
+        });
+        interstitial.loadAd(new AdRequest.Builder().build());
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
                 .threadPriority(Thread.NORM_PRIORITY - 2)
@@ -100,12 +113,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         restoreActionBar();
 
         MenuItem searchItem = menu.findItem(R.id.itemSearch);
-        SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        final SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(s)).commit();
+                mSearchView.clearFocus();
                 return false;
             }
 
@@ -115,6 +129,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             }
         });
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== R.id.action_show_favoris)
+            startActivity(new Intent(MainActivity.this, ShowFavorisActivity.class));
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**

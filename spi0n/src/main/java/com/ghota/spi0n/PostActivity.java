@@ -11,6 +11,7 @@ import android.text.Html;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.ghota.myhtml5webview.HTML5WebView;
@@ -28,8 +29,10 @@ public class PostActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        post = getIntent().getExtras().getParcelable("post");
         postsBDD = new PostsBDD(this);
+        post = getIntent().getExtras().getParcelable("post");
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

@@ -22,8 +22,12 @@ public class SettingsActivity extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     AlertDialog.Builder adb = new AlertDialog.Builder(SettingsActivity.this);
-                    adb.setTitle("About me");
-                    adb.setMessage("Un message a propro de moi!!!!");
+                    adb.setTitle(getString(R.string.pref_title_about));
+                    adb.setMessage(
+                            "Mail du créateur : villers.mickael@gmail.com" +
+                            "\nPackage name: " + BuildConfig.PACKAGE_NAME +
+                            "\nVersion: " + BuildConfig.VERSION_CODE
+                    );
                     adb.setPositiveButton("Ok", null);
                     adb.show();
                     return true;

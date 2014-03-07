@@ -4,7 +4,7 @@
     <!-- General settings -->
     <string name="pref_header_general">Général</string>
 
-    <string name="pref_title_open_post_type">Comment ouvrir les articles?</string>
+    <string name="pref_title_open_post_type">Ouverture des articles</string>
     <string-array name="pref_open_post_list_titles">
         <item>Dans l\'application</item>
         <item>Dans le navigateur</item>
@@ -14,7 +14,7 @@
         <item>0</item>
     </string-array>
 
-    <string name="pref_title_load_nb_post">Combien d\'article voulez-vous charger?</string>
+    <string name="pref_title_load_nb_post">Chargement des articles</string>
     <string-array name="pref_load_nb_post_list_titles">
         <item>10</item>
         <item>15</item>
@@ -27,16 +27,16 @@
         <item>50</item>
     </string-array>
 
-    <string name="pref_title_cache">Vider le cache!</string>
+    <string name="pref_title_cache">Vidage du cache</string>
 
 
     <!-- Other settings -->
     <string name="pref_header_other">Autres</string>
 
-    <string name="pref_title_about">A propos!</string>
+    <string name="pref_title_about">A propos</string>
 
     <string name="pref_title_donate">Donation</string>
-    <string name="pref_desc_donate">Si vous souhaitez aider au devellopement de l\'application</string>
+    <string name="pref_desc_donate">Si vous souhaitez aider au développement de l\'application</string>
 
 
 </resources>

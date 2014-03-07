@@ -5,14 +5,14 @@
     <string name="accueil">Accueil</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_cache">Vider le cache</string>
     <string name="no_connectivity">Impossible d\'obtenir des données à partir du site.</string>
-    <string name="action_search">Search</string>
-    <string name="action_refresh">Refresh</string>
     <string name="action_add_favoris">Ajouter au favoris</string>
+    <string name="action_show_favoris">Afficher les favoris</string>
     <string name="action_share">Partager</string>
     <string name="choose_mail_client">Choisis ton client mail</string>
     <string name="categorie">Catégories</string>
+    <string name="title_activity_show_favoris">Favoris</string>
+    <string name="action_remove_all">Tout supprimer</string>
+    <string name="action_refresh">Actualiser</string>
 
 </resources>
