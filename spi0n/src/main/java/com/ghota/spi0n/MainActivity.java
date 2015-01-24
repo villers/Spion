@@ -225,7 +225,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 isRefreshLoading = true;
                 isLoading = true;
                 if (Network.isNetworkAvailable(getActivity()))
-                    new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH) );
+                    if(getArguments().getString(ARG_SECTION_SEARCH) != "")
+                        new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH) );
+                    else
+                        new GetPostJson().execute(categorie_url.toString() + AppConstants.RSS_SERVER_TO_JSON);
                 else{
                     Toast.makeText(getActivity(), getString(R.string.no_connectivity), Toast.LENGTH_SHORT).show();
                     isLoading = false;
@@ -241,7 +244,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 isRefreshLoading = false;
                 isLoading = true;
                 if (Network.isNetworkAvailable(getActivity()))
-                    new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH));
+                    if(getArguments().getString(ARG_SECTION_SEARCH) != "")
+                        new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON + "&s="+ getArguments().getString(ARG_SECTION_SEARCH));
+                    else
+                        new GetPostJson().execute(categorie_url.toString() + "page/" + (++pagnation) + "/" + AppConstants.RSS_SERVER_TO_JSON);
                 else{
                     Toast.makeText(getActivity(), getString(R.string.no_connectivity), Toast.LENGTH_SHORT).show();
                     isLoading = false;
@@ -261,7 +267,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
                 ServiceHandler sh = new ServiceHandler();
                 String jsonStr = sh.makeServiceCall(jsonUrl, ServiceHandler.GET);
-
+                Log.d("Url", ">" + jsonUrl);
                 Log.d("Response: ", "> " + jsonStr);
 
                 if (jsonStr != null) {

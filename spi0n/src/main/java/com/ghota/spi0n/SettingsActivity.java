@@ -25,7 +25,7 @@ public class SettingsActivity extends PreferenceActivity {
                     adb.setTitle(getString(R.string.pref_title_about));
                     adb.setMessage(
                             "Mail du créateur : villers.mickael@gmail.com" +
-                            "\nPackage name: " + BuildConfig.PACKAGE_NAME +
+                            "\nPackage name: " + BuildConfig.VERSION_NAME +
                             "\nVersion: " + BuildConfig.VERSION_CODE
                     );
                     adb.setPositiveButton("Ok", null);

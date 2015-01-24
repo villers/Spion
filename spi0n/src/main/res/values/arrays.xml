@@ -9,7 +9,6 @@
         <item >Expérience</item>
         <item >Fake</item>
         <item >Guerre</item>
-        <item >Fake</item>
         <item >Humour</item>
         <item >Image</item>
         <item >Internet</item>
@@ -38,11 +37,10 @@
         <item >danse/</item>
         <item >experiences/</item>
         <item >fake-trucage/</item>
-        <item >guerre-m ilitaire/</item>
-        <item >Fake/</item>
-        <item >humour-comedi/e</item>
+        <item >guerre-militaire/</item>
+        <item >humour-comedie/</item>
         <item >photos-images-insolites/</item>
-        <item >siteweb-interne/t</item>
+        <item >siteweb-internet/</item>
         <item >jeuxvideo-consoles/</item>
         <item >musique/</item>
         <item >non-classe/</item>
@@ -51,7 +49,7 @@
         <item >publicite-marque/</item>
         <item >sante-corps/</item>
         <item >sport/</item>
-        <item >technologie-innovation/</item>
+        <item >technologie-innovations/</item>
         <item >auto-transport/</item>
         <item >trash-gore/</item>
         <item >tv-cinema/</item>
