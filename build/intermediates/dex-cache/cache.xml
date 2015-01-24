@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="7ae2d38807a43b2f2185ff4089a92c790b579e54">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/classes-35de2eec488d0ac398ed305b33b9df88127f875c.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/libs/universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="e33324b770223932d467e4ec39639b0c15f3b94e">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.2-SNAPSHOT-with-sources-89cfa2ad47a1ba2a44def61f3a5140103f98043d.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/Spi0n.com.libs/myhtml5webview/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="8acf29f5976308938bec577d11f63e8e8be395ea">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/classes-50701bed9e1e298f8f37560cb706ea171bf78220.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/Spi0n.com.libs/mydragtorefresh/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="a36eee2066fab7444a33b90532a7e9c35a937d83">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/classes-ef17ecdd18b18445336751fca15d2eae1209e367.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/19.0.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="b1701c49371231e0423b7588539f24bdab485019">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/classes-89ef33521b41d04e2ef6085951040dec411d7de9.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/classes-3a644d7a46c748998dd122b0f5ad5562b26e2790.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/classes-5f3e95d435e55f22b64b62a04ee293f5fbdda2d0.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.2/support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-c74a6bc9cdff91a2461ec9178778e62169ea3136.jar" />
+    </item>
+    <item
+        jar="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="/Users/viller_m/Desktop/Spi0n.com/spi0n/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-e49ed373ed5998b4bbaf789053afed41aec2b645.jar" />
+    </item>
+
+</items>
